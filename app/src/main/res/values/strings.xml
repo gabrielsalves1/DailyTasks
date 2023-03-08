@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">DailyTasks</string>
+    <string name="create_task">Criar tarefa</string>
+    <string name="name">Nome</string>
+    <string name="description">Descrição</string>
+    <string name="date">Data</string>
+    <string name="end_date">Data final</string>
+    <string name="save">Salvar</string>
+    <string name="to_do">Fazer</string>
+    <string name="doing">Fazendo</string>
+    <string name="done">Feito</string>
+</resources>
