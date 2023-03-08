@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.gawnit.dailytasks.R
 import com.gawnit.dailytasks.databinding.ActivityTaskFormBinding
+import org.json.JSONObject
 import java.io.File
 import java.io.FileOutputStream
 
@@ -26,22 +27,31 @@ class TaskFormActivity : AppCompatActivity() {
             val statusId = binding.rgStatus.checkedRadioButtonId
             val status = findViewById<RadioButton>(statusId).text.toString()
 
-            val data = "$name, $description, $taskDate, $taskEndDate, $status"
+            val data = JSONObject(
+                "{\n" +
+                    "\"name\": \"$name\"," +
+                    "\"description\": \"$description\"," +
+                    "\"date\": \"$taskDate\"," +
+                    "\"endDate\": \"$taskEndDate\"," +
+                    "\"status\": \"$status\"" +
+                    "\n}"
+            )
+
             writeFile("daily_tasks_070323", data)
         }
     }
 
-    fun writeFile(fileName: String, content: String) {
+    fun writeFile(fileName: String, content: JSONObject) {
         val path: File = applicationContext.filesDir
 
         try {
             val writer = FileOutputStream(File(path, fileName))
-            writer.write(content.toByteArray())
+            writer.write(content.toString().toByteArray())
             writer.close()
 
             Toast.makeText(applicationContext, "Salvo com sucesso! $path", Toast.LENGTH_SHORT).show()
         } catch (e: Exception) {
-            e.printStackTrace()
+            e.cause?.printStackTrace()
         }
     }
 }
