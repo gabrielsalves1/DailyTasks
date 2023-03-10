@@ -1,4 +1,4 @@
-package com.gawnit.dailytasks.util
+package com.gawnit.dailytasks.adapters
 
 import android.content.Context
 import android.view.LayoutInflater

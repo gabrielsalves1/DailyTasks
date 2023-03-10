@@ -9,14 +9,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.gawnit.dailytasks.databinding.ActivityMainBinding
 import com.gawnit.dailytasks.ui.TaskFormActivity
 import com.gawnit.dailytasks.util.FileUtil
-import com.gawnit.dailytasks.util.TaskAdapter
-import java.io.File
-import java.io.FileInputStream
+import com.gawnit.dailytasks.adapters.TaskAdapter
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -29,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         binding.rcTasks.layoutManager = LinearLayoutManager(this)
         binding.rcTasks.setHasFixedSize(true)
 
-        var listTask = FileUtil.readFile(applicationContext, "daily_tasks_070323")
+        var listTask = FileUtil.readFile(applicationContext, "daily_tasks.json")
         var adapter = TaskAdapter(this, listTask)
         binding.rcTasks.adapter = adapter
     }

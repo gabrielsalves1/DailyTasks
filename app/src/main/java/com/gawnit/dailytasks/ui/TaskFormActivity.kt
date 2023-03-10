@@ -1,15 +1,14 @@
 package com.gawnit.dailytasks.ui
 
+import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
 import android.widget.RadioButton
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.gawnit.dailytasks.R
+import com.gawnit.dailytasks.MainActivity
 import com.gawnit.dailytasks.databinding.ActivityTaskFormBinding
+import com.gawnit.dailytasks.util.FileUtil
 import org.json.JSONObject
-import java.io.File
-import java.io.FileOutputStream
+import java.time.LocalDate
 
 class TaskFormActivity : AppCompatActivity() {
     private lateinit var binding: ActivityTaskFormBinding
@@ -22,8 +21,7 @@ class TaskFormActivity : AppCompatActivity() {
         binding.btnSaveTask.setOnClickListener {
             val name = binding.editTaskName.text.toString()
             val description = binding.editTaskDescription.text.toString()
-            val taskDate = binding.editTaskDate.text.toString()
-            val taskEndDate = binding.editTaskEndDate.text.toString()
+//          val taskDate = binding.editTaskDate.text.toString()
             val statusId = binding.rgStatus.checkedRadioButtonId
             val status = findViewById<RadioButton>(statusId).text.toString()
 
@@ -31,27 +29,13 @@ class TaskFormActivity : AppCompatActivity() {
                 "{\n" +
                     "\"name\": \"$name\"," +
                     "\"description\": \"$description\"," +
-                    "\"date\": \"$taskDate\"," +
-                    "\"endDate\": \"$taskEndDate\"," +
+//                  "\"date\": \"${LocalDate.now()}\"," +
                     "\"status\": \"$status\"" +
                     "\n}"
             )
 
-            writeFile("daily_tasks_070323", data)
-        }
-    }
-
-    fun writeFile(fileName: String, content: JSONObject) {
-        val path: File = applicationContext.filesDir
-
-        try {
-            val writer = FileOutputStream(File(path, fileName))
-            writer.write(content.toString().toByteArray())
-            writer.close()
-
-            Toast.makeText(applicationContext, "Salvo com sucesso! $path", Toast.LENGTH_SHORT).show()
-        } catch (e: Exception) {
-            e.cause?.printStackTrace()
+            FileUtil.writeFile(applicationContext, "daily_tasks.json", data)
+            startActivity(Intent(this, MainActivity::class.java))
         }
     }
 }
