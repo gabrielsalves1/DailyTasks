@@ -8,7 +8,6 @@ import com.gawnit.dailytasks.MainActivity
 import com.gawnit.dailytasks.databinding.ActivityTaskFormBinding
 import com.gawnit.dailytasks.util.FileUtil
 import org.json.JSONObject
-import java.time.LocalDate
 
 class TaskFormActivity : AppCompatActivity() {
     private lateinit var binding: ActivityTaskFormBinding
@@ -21,7 +20,7 @@ class TaskFormActivity : AppCompatActivity() {
         binding.btnSaveTask.setOnClickListener {
             val name = binding.editTaskName.text.toString()
             val description = binding.editTaskDescription.text.toString()
-//          val taskDate = binding.editTaskDate.text.toString()
+            val taskDate = binding.editTaskDate.text.toString()
             val statusId = binding.rgStatus.checkedRadioButtonId
             val status = findViewById<RadioButton>(statusId).text.toString()
 
@@ -29,7 +28,7 @@ class TaskFormActivity : AppCompatActivity() {
                 "{\n" +
                     "\"name\": \"$name\"," +
                     "\"description\": \"$description\"," +
-//                  "\"date\": \"${LocalDate.now()}\"," +
+                    "\"date\": \"$taskDate\"," +
                     "\"status\": \"$status\"" +
                     "\n}"
             )

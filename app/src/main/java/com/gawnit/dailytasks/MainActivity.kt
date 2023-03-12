@@ -1,10 +1,8 @@
 package com.gawnit.dailytasks
 
 import android.content.Intent
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gawnit.dailytasks.databinding.ActivityMainBinding
 import com.gawnit.dailytasks.ui.TaskFormActivity
@@ -26,8 +24,8 @@ class MainActivity : AppCompatActivity() {
         binding.rcTasks.layoutManager = LinearLayoutManager(this)
         binding.rcTasks.setHasFixedSize(true)
 
-        var listTask = FileUtil.readFile(applicationContext, "daily_tasks.json")
-        var adapter = TaskAdapter(this, listTask)
+        val listTask = FileUtil.readFile(applicationContext, "daily_tasks.json")
+        val adapter = TaskAdapter(this, listTask)
         binding.rcTasks.adapter = adapter
     }
 }

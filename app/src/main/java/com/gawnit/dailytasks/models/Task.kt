@@ -1,10 +1,10 @@
 package com.gawnit.dailytasks.models
 
-import java.time.LocalDate
+import java.util.Date
 
 data class Task(
     val name: String,
     val description: String,
-//  val date: LocalDate = LocalDate.now(),
+    val date: Date,
     var status: String
 )

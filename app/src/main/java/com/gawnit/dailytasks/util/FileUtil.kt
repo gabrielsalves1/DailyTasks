@@ -3,34 +3,36 @@ package com.gawnit.dailytasks.util
 import android.content.Context
 import android.widget.Toast
 import com.gawnit.dailytasks.models.Task
-import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import org.json.JSONObject
 import java.io.File
 import java.io.FileOutputStream
-import java.time.LocalDate
+import kotlin.collections.ArrayList
 
 class FileUtil {
     companion object {
-        private lateinit var data: MutableList<Task>
+        private lateinit var data: ArrayList<Task>
 
         fun readFile(context: Context, fileName: String): List<Task> {
             val path: File = context.filesDir
             val readerFile = File(path, fileName)
             data = ArrayList()
+            val gson = GsonBuilder().setDateFormat("yyyy-mm-dd").create()
 
             try {
                 readerFile.readLines().forEach {
-                    data.add(Gson().fromJson(it, Task::class.java))
+                    println("Add $it to data")
+                    data.add(gson.fromJson(it, Task::class.java))
                 }
 
                 return data
             } catch (e: Exception) {
                 e.cause?.printStackTrace()
-                data.add(Gson().fromJson(
+                data.add(gson.fromJson(
                     "{\n" +
                             "\"name\": \"Cadastre uma tarefa! :)\"," +
                             "\"description\": \"Cadastre uma nova tarefa para utilizar os recursos do app.\"," +
-//                          "\"date\": \"${LocalDate.now()}\"," +
+                            "\"date\": \"2023-03-06\"," +
                             "\"status\": \"Fazendo\"" +
                     "\n}", Task::class.java)
                 )

@@ -25,7 +25,7 @@ class TaskAdapter(private val context: Context, private val tasks: List<Task>):
     override fun getItemCount(): Int = tasks.size
 
     inner class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val name: TextView = itemView.findViewById<TextView>(R.id.txt_name)
-        val description: TextView = itemView.findViewById<TextView>(R.id.txt_description)
+        val name: TextView = itemView.findViewById(R.id.txt_name)
+        val description: TextView = itemView.findViewById(R.id.txt_description)
     }
 }
