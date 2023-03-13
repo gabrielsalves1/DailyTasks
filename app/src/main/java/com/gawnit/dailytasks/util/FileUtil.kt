@@ -17,11 +17,10 @@ class FileUtil {
             val path: File = context.filesDir
             val readerFile = File(path, fileName)
             data = ArrayList()
-            val gson = GsonBuilder().setDateFormat("yyyy-mm-dd").create()
+            val gson = GsonBuilder().setDateFormat("dd-mm-yyyy").create()
 
             try {
                 readerFile.readLines().forEach {
-                    println("Add $it to data")
                     data.add(gson.fromJson(it, Task::class.java))
                 }
 
@@ -32,7 +31,7 @@ class FileUtil {
                     "{\n" +
                             "\"name\": \"Cadastre uma tarefa! :)\"," +
                             "\"description\": \"Cadastre uma nova tarefa para utilizar os recursos do app.\"," +
-                            "\"date\": \"2023-03-06\"," +
+                            "\"date\": \"06-03-2023\"," +
                             "\"status\": \"Fazendo\"" +
                     "\n}", Task::class.java)
                 )

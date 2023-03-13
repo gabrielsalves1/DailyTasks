@@ -1,6 +1,7 @@
 package com.gawnit.dailytasks.adapters
 
 import android.content.Context
+import android.text.format.DateFormat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,6 +21,7 @@ class TaskAdapter(private val context: Context, private val tasks: List<Task>):
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
         holder.name.text = tasks[position].name
         holder.description.text = tasks[position].description
+        holder.date.text = DateFormat.format("dd-mm-yyyy", tasks[position].date).toString()
     }
 
     override fun getItemCount(): Int = tasks.size
@@ -27,5 +29,6 @@ class TaskAdapter(private val context: Context, private val tasks: List<Task>):
     inner class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val name: TextView = itemView.findViewById(R.id.txt_name)
         val description: TextView = itemView.findViewById(R.id.txt_description)
+        val date: TextView = itemView.findViewById(R.id.txt_date)
     }
 }
