@@ -21,7 +21,7 @@ class TaskAdapter(private val context: Context, private val tasks: List<Task>):
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
         holder.name.text = tasks[position].name
         holder.description.text = tasks[position].description
-        holder.date.text = DateFormat.format("dd-mm-yyyy", tasks[position].date).toString()
+        holder.date.text = DateFormat.format("dd/mm/yyyy", tasks[position].date).toString()
     }
 
     override fun getItemCount(): Int = tasks.size
