@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.gawnit.dailytasks.databinding.ActivityMainBinding
 import com.gawnit.dailytasks.ui.TaskFormActivity
 import com.gawnit.dailytasks.util.FileUtil
-import com.gawnit.dailytasks.adapters.TaskAdapter
+import com.gawnit.dailytasks.adapter.TaskAdapter
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding

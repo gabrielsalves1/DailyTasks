@@ -2,7 +2,7 @@ package com.gawnit.dailytasks.util
 
 import android.content.Context
 import android.widget.Toast
-import com.gawnit.dailytasks.models.Task
+import com.gawnit.dailytasks.model.Task
 import com.google.gson.GsonBuilder
 import org.json.JSONObject
 import java.io.File

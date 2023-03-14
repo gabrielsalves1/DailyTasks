@@ -1,4 +1,4 @@
-package com.gawnit.dailytasks.models
+package com.gawnit.dailytasks.model
 
 import java.util.Date
 
