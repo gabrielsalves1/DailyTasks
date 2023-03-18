@@ -9,4 +9,6 @@
     <string name="to_do">Fazer</string>
     <string name="doing">Fazendo</string>
     <string name="done">Feito</string>
+    <string name="home">Início</string>
+    <string name="tasks">Tarefas</string>
 </resources>

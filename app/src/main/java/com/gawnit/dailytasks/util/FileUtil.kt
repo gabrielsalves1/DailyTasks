@@ -24,9 +24,10 @@ class FileUtil {
                     data.add(gson.fromJson(it, Task::class.java))
                 }
 
-                return data
+                return data.sortedBy { it.date }
             } catch (e: Exception) {
                 e.cause?.printStackTrace()
+
                 data.add(gson.fromJson(
                     "{\n" +
                             "\"name\": \"Cadastre uma tarefa! :)\"," +
