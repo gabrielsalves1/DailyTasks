@@ -6,12 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.gawnit.dailytasks.R
 import com.gawnit.dailytasks.adapter.TaskAdapter
 import com.gawnit.dailytasks.databinding.FragmentMainBinding
-import com.gawnit.dailytasks.ui.taskform.TaskFormFragment
 
 class MainFragment : Fragment() {
     private lateinit var binding: FragmentMainBinding
@@ -28,9 +25,10 @@ class MainFragment : Fragment() {
 
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
-        val listTask = viewModel.readFile(requireContext())
-        val adapter = TaskAdapter(requireContext(), listTask)
-        binding.rcTasks.adapter = adapter
+        viewModel.findAll.observe(viewLifecycleOwner) { listTask ->
+            val adapter = TaskAdapter(requireContext(), listTask)
+            binding.rcTasks.adapter = adapter
+        }
 
         return binding.root
     }

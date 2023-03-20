@@ -8,9 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.gawnit.dailytasks.R
 import com.gawnit.dailytasks.model.Task
+import java.util.Date
 
 class TaskAdapter(private val context: Context, private val tasks: List<Task>):
     RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
@@ -25,7 +27,7 @@ class TaskAdapter(private val context: Context, private val tasks: List<Task>):
         holder.description.text = tasks[position].description
 
         when(tasks[position].status) {
-            "Fazer" -> setDateAndIcon(holder, position, "#94DEEE", R.drawable.ic_playlist_add)
+            "Fazer" -> setDateAndIcon(holder, position, "#E0B768", R.drawable.ic_wait)
             "Fazendo" -> setDateAndIcon(holder, position, "#FFD276", R.drawable.ic_double_arrow_up)
             "Feito" -> setDateAndIcon(holder, position, "#9DE2C0", R.drawable.ic_done)
         }
@@ -34,7 +36,7 @@ class TaskAdapter(private val context: Context, private val tasks: List<Task>):
     override fun getItemCount(): Int = tasks.size
 
     private fun setDateAndIcon(holder: TaskViewHolder, position: Int, color: String, icon: Int) {
-        holder.date.text = DateFormat.format("dd/mm/yyyy", tasks[position].date).toString()
+        holder.date.text = DateFormat.format("dd/mm/yyyy", Date(tasks[position].date)).toString()
         holder.date.setTextColor(Color.parseColor(color))
         holder.status.setImageResource(icon)
     }

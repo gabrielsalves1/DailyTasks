@@ -67,7 +67,7 @@
                     android:text="@string/to_do"
                     android:paddingHorizontal="10dp"
                     android:textAllCaps="true"
-                    android:drawableEnd="@drawable/ic_playlist_add"
+                    android:drawableEnd="@drawable/ic_wait"
                     android:checked="true" />
                 <RadioButton
                     android:id="@+id/rb_in_progress"

@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.gawnit.dailytasks.R
 import com.gawnit.dailytasks.databinding.FragmentTaskFormBinding
+import com.gawnit.dailytasks.model.Task
 import com.gawnit.dailytasks.ui.main.MainFragment
 import org.json.JSONObject
 
@@ -38,19 +39,10 @@ class TaskFormFragment : Fragment() {
                 R.id.rb_done -> status = binding.rbToDo.text.toString()
             }
 
-            val data = JSONObject(
-                "{\n" +
-                        "\"name\": \"$name\"," +
-                        "\"description\": \"$description\"," +
-                        "\"date\": \"$taskDate\"," +
-                        "\"status\": \"$status\"" +
-                        "\n}"
-            )
-
             viewModel = ViewModelProvider(this).get(TaskFormViewModel::class.java)
 
             if (container != null) {
-                viewModel.writeFile(container.context, data)
+                viewModel.insert(Task(0, name, description, taskDate, status))
                 parentFragmentManager.beginTransaction().replace(R.id.frame_layout, MainFragment()).commit()
             }
         }
