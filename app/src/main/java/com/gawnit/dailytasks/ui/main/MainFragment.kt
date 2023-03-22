@@ -7,8 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.gawnit.dailytasks.R
 import com.gawnit.dailytasks.adapter.TaskAdapter
 import com.gawnit.dailytasks.databinding.FragmentMainBinding
+import com.gawnit.dailytasks.ui.task.TaskFragment
 
 class MainFragment : Fragment() {
     private lateinit var binding: FragmentMainBinding
@@ -17,7 +19,7 @@ class MainFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentMainBinding.inflate(inflater, container, false)
 
         binding.rcTasks.layoutManager = LinearLayoutManager(requireContext())
@@ -28,6 +30,18 @@ class MainFragment : Fragment() {
         viewModel.findAll.observe(viewLifecycleOwner) { listTask ->
             val adapter = TaskAdapter(requireContext(), listTask)
             binding.rcTasks.adapter = adapter
+
+            adapter.onItemClick = {
+                TaskFragment().apply {
+                    arguments = Bundle().apply {
+                        putInt("id", it.id)
+                    }
+                }
+
+                parentFragmentManager.beginTransaction().replace(R.id.frame_layout, TaskFragment()).commit()
+            }
+
+            adapter.notifyDataSetChanged()
         }
 
         return binding.root

@@ -12,4 +12,8 @@ class TaskRepository(
     suspend fun insert(task: Task) {
         taskDao.insert(task)
     }
+
+    suspend fun findById(id: Int) {
+        taskDao.findById(id)
+    }
 }

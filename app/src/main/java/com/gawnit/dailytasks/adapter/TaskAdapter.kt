@@ -16,6 +16,8 @@ import java.util.Date
 
 class TaskAdapter(private val context: Context, private val tasks: List<Task>):
     RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
+    var onItemClick: ((Task) -> Unit)? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
         val taskItem = LayoutInflater.from(context).inflate(R.layout.task_item, parent, false)
 
@@ -30,6 +32,10 @@ class TaskAdapter(private val context: Context, private val tasks: List<Task>):
             "Fazer" -> setDateAndIcon(holder, position, "#E0B768", R.drawable.ic_wait)
             "Fazendo" -> setDateAndIcon(holder, position, "#FFD276", R.drawable.ic_double_arrow_up)
             "Feito" -> setDateAndIcon(holder, position, "#9DE2C0", R.drawable.ic_done)
+        }
+
+        holder.itemView.setOnClickListener {
+            onItemClick?.invoke(tasks[position])
         }
     }
 
