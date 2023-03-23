@@ -6,18 +6,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.ViewModel
 import com.gawnit.dailytasks.R
 import com.gawnit.dailytasks.databinding.FragmentTaskBinding
 
 class TaskFragment : Fragment() {
     private lateinit var binding: FragmentTaskBinding
+    private lateinit var viewModel: TaskViewModel
 
     companion object {
         fun newInstance() = TaskFragment()
     }
-
-    private lateinit var viewModel: TaskViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,8 +27,14 @@ class TaskFragment : Fragment() {
 
         viewModel = ViewModelProvider(this).get(TaskViewModel::class.java)
 
-        val taskId = arguments?.getInt("id")
-        println("Task on click $taskId")
+        arguments?.getInt("id")?.let {
+            viewModel.findById(it).observe(viewLifecycleOwner) {
+                binding.txtName.text = it.name
+                binding.txtDate.text = it.date
+                binding.txtStatus.text = it.status
+                binding.txtDescription.text = it.description
+            }
+        }
 
         return binding.root
     }

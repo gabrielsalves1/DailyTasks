@@ -13,7 +13,7 @@ class TaskRepository(
         taskDao.insert(task)
     }
 
-    suspend fun findById(id: Int) {
-        taskDao.findById(id)
+    fun findById(id: Int): LiveData<Task> {
+        return taskDao.findById(id)
     }
 }

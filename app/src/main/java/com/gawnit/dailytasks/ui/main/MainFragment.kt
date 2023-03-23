@@ -32,13 +32,11 @@ class MainFragment : Fragment() {
             binding.rcTasks.adapter = adapter
 
             adapter.onItemClick = {
-                TaskFragment().apply {
+                parentFragmentManager.beginTransaction().replace(R.id.frame_layout, TaskFragment().apply {
                     arguments = Bundle().apply {
                         putInt("id", it.id)
                     }
-                }
-
-                parentFragmentManager.beginTransaction().replace(R.id.frame_layout, TaskFragment()).commit()
+                }).commit()
             }
 
             adapter.notifyDataSetChanged()

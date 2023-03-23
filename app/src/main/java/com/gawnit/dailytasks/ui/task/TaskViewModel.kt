@@ -18,9 +18,7 @@ class TaskViewModel(application: Application) : AndroidViewModel(application) {
         repository = TaskRepository(taskDao)
     }
 
-    fun findById(id: Int) {
-        viewModelScope.launch {
-            repository.findById(id)
-        }
+    fun findById(id: Int): LiveData<Task> {
+        return repository.findById(id)
     }
 }

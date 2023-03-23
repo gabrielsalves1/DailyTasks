@@ -18,6 +18,13 @@ class TaskAdapter(private val context: Context, private val tasks: List<Task>):
     RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
     var onItemClick: ((Task) -> Unit)? = null
 
+    inner class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val name: TextView = itemView.findViewById(R.id.txt_name)
+        val description: TextView = itemView.findViewById(R.id.txt_description)
+        val date: TextView = itemView.findViewById(R.id.txt_date)
+        val status: ImageView = itemView.findViewById(R.id.img_status)
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
         val taskItem = LayoutInflater.from(context).inflate(R.layout.task_item, parent, false)
 
@@ -41,16 +48,10 @@ class TaskAdapter(private val context: Context, private val tasks: List<Task>):
 
     override fun getItemCount(): Int = tasks.size
 
+
     private fun setDateAndIcon(holder: TaskViewHolder, position: Int, color: String, icon: Int) {
         holder.date.text = DateFormat.format("dd/mm/yyyy", Date(tasks[position].date)).toString()
         holder.date.setTextColor(Color.parseColor(color))
         holder.status.setImageResource(icon)
-    }
-
-    inner class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val name: TextView = itemView.findViewById(R.id.txt_name)
-        val description: TextView = itemView.findViewById(R.id.txt_description)
-        val date: TextView = itemView.findViewById(R.id.txt_date)
-        val status: ImageView = itemView.findViewById(R.id.img_status)
     }
 }
