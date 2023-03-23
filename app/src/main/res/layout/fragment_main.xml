@@ -19,7 +19,8 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rc_tasks"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            tools:listitem="@layout/task_item" />
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

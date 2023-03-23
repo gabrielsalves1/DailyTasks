@@ -27,12 +27,12 @@ class TaskFragment : Fragment() {
 
         viewModel = ViewModelProvider(this).get(TaskViewModel::class.java)
 
-        arguments?.getInt("id")?.let {
-            viewModel.findById(it).observe(viewLifecycleOwner) {
-                binding.txtName.text = it.name
-                binding.txtDate.text = it.date
-                binding.txtStatus.text = it.status
-                binding.txtDescription.text = it.description
+        arguments?.getInt("id")?.let { id ->
+            viewModel.findById(id).observe(viewLifecycleOwner) { task ->
+                binding.txtName.text = task.name
+                binding.txtDate.text = task.date
+                binding.txtStatus.text = task.status
+                binding.txtDescription.text = task.description
             }
         }
 
