@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.gawnit.dailytasks.dao.TaskDao
 import com.gawnit.dailytasks.model.Task
 
-@Database(entities = [Task::class], version = 1, exportSchema = false)
+@Database(entities = [Task::class], version = 2, exportSchema = false)
 abstract class DailyTaskDatabase: RoomDatabase() {
     abstract fun taskDao(): TaskDao
 

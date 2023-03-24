@@ -2,17 +2,15 @@ package com.gawnit.dailytasks.adapter
 
 import android.content.Context
 import android.graphics.Color
-import android.text.format.DateFormat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.gawnit.dailytasks.R
 import com.gawnit.dailytasks.model.Task
-import java.util.Date
+import com.gawnit.dailytasks.util.dateFormatPtBR
 
 class TaskAdapter(private val context: Context, private val tasks: List<Task>):
     RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
@@ -48,9 +46,8 @@ class TaskAdapter(private val context: Context, private val tasks: List<Task>):
 
     override fun getItemCount(): Int = tasks.size
 
-
     private fun setDateAndIcon(holder: TaskViewHolder, position: Int, color: String, icon: Int) {
-        holder.date.text = DateFormat.format("dd/mm/yyyy", Date(tasks[position].date)).toString()
+        holder.date.text = dateFormatPtBR(tasks[position].date)
         holder.date.setTextColor(Color.parseColor(color))
         holder.status.setImageResource(icon)
     }

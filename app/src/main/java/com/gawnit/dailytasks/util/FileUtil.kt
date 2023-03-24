@@ -7,7 +7,6 @@ import com.google.gson.GsonBuilder
 import org.json.JSONObject
 import java.io.File
 import java.io.FileOutputStream
-import kotlin.collections.ArrayList
 
 class FileUtil {
     companion object {

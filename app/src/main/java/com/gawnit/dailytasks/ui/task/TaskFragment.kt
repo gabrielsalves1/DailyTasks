@@ -1,15 +1,13 @@
 package com.gawnit.dailytasks.ui.task
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.LifecycleObserver
-import androidx.lifecycle.ViewModel
-import com.gawnit.dailytasks.R
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.gawnit.dailytasks.databinding.FragmentTaskBinding
+import com.gawnit.dailytasks.util.dateFormatPtBR
 
 class TaskFragment : Fragment() {
     private lateinit var binding: FragmentTaskBinding
@@ -30,7 +28,7 @@ class TaskFragment : Fragment() {
         arguments?.getInt("id")?.let { id ->
             viewModel.findById(id).observe(viewLifecycleOwner) { task ->
                 binding.txtName.text = task.name
-                binding.txtDate.text = task.date
+                binding.txtDate.text = dateFormatPtBR(task.date)
                 binding.txtStatus.text = task.status
                 binding.txtDescription.text = task.description
             }

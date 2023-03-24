@@ -1,11 +1,8 @@
 package com.gawnit.dailytasks.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
 import com.gawnit.dailytasks.R
 import com.gawnit.dailytasks.databinding.ActivityMainBinding
 import com.gawnit.dailytasks.ui.main.MainFragment

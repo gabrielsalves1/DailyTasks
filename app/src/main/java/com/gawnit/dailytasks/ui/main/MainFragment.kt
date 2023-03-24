@@ -1,10 +1,10 @@
 package com.gawnit.dailytasks.ui.main
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gawnit.dailytasks.R
@@ -38,8 +38,6 @@ class MainFragment : Fragment() {
                     }
                 }).commit()
             }
-
-            adapter.notifyDataSetChanged()
         }
 
         return binding.root

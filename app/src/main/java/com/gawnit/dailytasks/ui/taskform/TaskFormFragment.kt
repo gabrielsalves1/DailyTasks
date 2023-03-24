@@ -1,16 +1,16 @@
 package com.gawnit.dailytasks.ui.taskform
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.gawnit.dailytasks.R
 import com.gawnit.dailytasks.databinding.FragmentTaskFormBinding
 import com.gawnit.dailytasks.model.Task
 import com.gawnit.dailytasks.ui.main.MainFragment
-import org.json.JSONObject
+import java.util.*
 
 class TaskFormFragment : Fragment() {
     private lateinit var binding: FragmentTaskFormBinding
@@ -42,7 +42,7 @@ class TaskFormFragment : Fragment() {
             viewModel = ViewModelProvider(this).get(TaskFormViewModel::class.java)
 
             if (container != null) {
-                viewModel.insert(Task(0, name, description, taskDate, status))
+                viewModel.insert(Task(0, name, description, Date(taskDate), status))
                 parentFragmentManager.beginTransaction().replace(R.id.frame_layout, MainFragment()).commit()
             }
         }
